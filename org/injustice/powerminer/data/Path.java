@@ -5,7 +5,9 @@
 
 package org.injustice.powerminer.data;
 
+import org.injustice.framework.api.IMethodContext;
 import org.powerbot.script.wrappers.Tile;
+import org.powerbot.script.wrappers.TilePath;
 
 /**
  *
@@ -50,6 +52,8 @@ public enum Path {
     public Tile[] getPath() {
         return path;
     }
+    
+    
     
 
 }
