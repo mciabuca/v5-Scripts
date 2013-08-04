@@ -50,5 +50,9 @@ public class Sleep extends IMethodProvider {
             sleep(timeout);
         }
     }
+    
+    public void waitFor(final boolean condition) {
+        waitFor(condition, 6000000);
+    }
 
 }

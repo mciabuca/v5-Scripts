@@ -10,21 +10,22 @@ import org.powerbot.script.wrappers.GameObject;
 public class Mine extends StateNode {
 
     private IMethodContext ctx;
-    private RockOption filter;
+    private RockOption rockOption;
     private Rock rock;
     private String state;
 
-    public Mine(IMethodContext ctx, RockOption rockFilter) {
+    public Mine(IMethodContext ctx, RockOption rockOption) {
         super(ctx);
-        this.rock = rockFilter.getRock();
-        this.filter = rockFilter;
+        this.rock = rockOption.getRock();
+        this.rockOption = rockOption;
     }
 
     @Override
     public boolean activate() {
         if (ctx.backpack.count() != 28 && !ctx.backpack.containsAnyOf(Rock.gems) && !ctx.backpack.containsAnyOf(Rock.LIMESTONE.getInvId())
                 && !ctx.backpack.containsAnyOf(6979, 6981, 6983)) {
-            for (GameObject g : ctx.objects.select().id(filter.getRock().getIds()).within(filter.getRadius()).nearest().first()) {
+            for (GameObject g : ctx.objects.select().id(rockOption.getRock().getIds())
+                    .within(rockOption.getStartTile(), rockOption.getRadius()).nearest().first()) {
                 if (g.isValid()) {
                     return true;
                 }
@@ -43,6 +44,12 @@ public class Mine extends StateNode {
                         state = "Sleeping";
                         for (int i = 0; i < 10 && ctx.players.local().getAnimation() == -1; i++) {
                             Delay.sleep(600, 650);
+                        }
+                        if (rockOption.isHover()) {
+                        for (GameObject secondRock : ctx.objects.limit(1, 1)) {
+                            ctx.mouse.move(secondRock);
+                            state = "Hovering next rock";
+                        }
                         }
                         Delay.sleep(600);
                         for (int i = 0; i < 10 && ctx.players.local().getAnimation() != -1; i++) {
