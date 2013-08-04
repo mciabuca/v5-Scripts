@@ -3,12 +3,12 @@
  * and open the template in the editor.
  */
 
-package org.injustice.powerminer.impl.bank;
+package org.injustice.powerminer.impl;
 
 import org.injustice.framework.api.IMethodContext;
 import org.injustice.framework.script.node.StateNode;
 import org.injustice.powerminer.data.Bank;
-import org.injustice.powerminer.data.MinerFactory;
+import org.injustice.powerminer.data.MinerMaster;
 import org.injustice.powerminer.data.Rock;
 
 /**
@@ -20,7 +20,7 @@ public class Banking extends StateNode {
     private Bank bank;
     private final int[] pickaxes = {1265, 1267, 1269, 1271, 1273, 1275, 15259};
 
-    public Banking(IMethodContext ctx, Rock rock, MinerFactory factory) {
+    public Banking(IMethodContext ctx, Rock rock, MinerMaster factory) {
         super(ctx);
         this.rock = rock;
         this.bank = factory.getBank();

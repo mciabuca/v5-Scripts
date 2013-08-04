@@ -24,6 +24,7 @@ public class IMethodContext extends MethodContext {
     public Skills skills;
     public Utils utils;
     public Log log;
+    public Sleep sleep;
     
     public IMethodContext(MethodContext ctx) {
         super(ctx.getBot());
@@ -43,7 +44,7 @@ public class IMethodContext extends MethodContext {
         this.skills = new Skills(this);
         this.utils = new Utils(this);
         this.log = new Log(this);
-        
+        this.sleep = new Sleep(this);
     }
     
 }

@@ -1,6 +1,6 @@
 package org.injustice.powerminer.data;
 
-public enum MinerFactory {
+public enum MinerMaster {
 
     AL_KHARID(Location.AL_KHARID, Path.AL_KHARID, Bank.AL_KHARID),
     BARB_VILL(Location.BARB_VILL, Path.BARB_VILL, Bank.VARROCK_WEST),
@@ -13,7 +13,7 @@ public enum MinerFactory {
     private Path path;
     private Bank bank;
 
-    MinerFactory(Location location, Path path, Bank bank) {
+    MinerMaster(Location location, Path path, Bank bank) {
         this.location = location;
         this.path = path;
         this.bank = bank;

@@ -3,38 +3,39 @@
  * and open the template in the editor.
  */
 
-package org.injustice.powerminer.impl.drop;
+package org.injustice.powerminer.impl;
 
 import org.injustice.framework.api.IMethodContext;
-import org.injustice.framework.script.job.state.Node;
 import org.injustice.framework.script.node.StateNode;
 import org.injustice.powerminer.data.Rock;
+import org.powerbot.script.wrappers.Item;
 
 /**
  *
  * @author Injustice
  */
-public class Mousekeys extends StateNode {
+public class Gems extends StateNode {
     
     @Override
     public String state() {
-        return "Mousekeys";
+        return "Dropping gem";
     }
-    private Rock rock;
 
-    public Mousekeys(IMethodContext ctx, Rock rock) {
+    public Gems(IMethodContext ctx) {
         super(ctx);
     }
 
     @Override
     public void execute() {
-        ctx.backpack.useMouseKeys();
+        for (Item i : ctx.backpack) {
+            i.interact("Drop");
+            ctx.sleep.sleep(500, 600);
+        }
     }
 
     @Override
     public boolean activate() {
-        return ctx.backpack.isFull() && 
-                ctx.backpack.select().id(rock.getInvId()).count() == 28;
+        return !ctx.backpack.select().id(Rock.gems).isEmpty();
     }
 
 }

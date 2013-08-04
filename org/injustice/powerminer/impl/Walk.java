@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.injustice.powerminer.impl.bank;
+package org.injustice.powerminer.impl;
 
 import org.injustice.framework.api.IMethodContext;
 import org.injustice.framework.script.node.StateNode;
 import org.injustice.powerminer.data.Location;
-import org.injustice.powerminer.data.MinerFactory;
+import org.injustice.powerminer.data.MinerMaster;
 import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.Tile;
 import org.powerbot.script.wrappers.TilePath;
@@ -33,12 +33,12 @@ public class Walk extends StateNode {
         nextStep.reset();
     }
 
-    public static Walk createBankPathInstance(MinerFactory factory, IMethodContext ctx) {
+    public static Walk createBankPathInstance(MinerMaster factory, IMethodContext ctx) {
         state = "Walking bank";
         return new Walk(ctx, factory.getPath().getPath());
     }
 
-    public static Walk createSitePathInstance(MinerFactory factory, IMethodContext ctx) {
+    public static Walk createSitePathInstance(MinerMaster factory, IMethodContext ctx) {
         Tile[] path = factory.getPath().getPath();
         path[path.length + 1] = Location.startTile;
         state = "Walking back";

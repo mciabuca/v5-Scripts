@@ -6,7 +6,6 @@ package org.injustice.powerminer.data;
 
 import org.injustice.framework.api.IMethodContext;
 import org.powerbot.script.lang.BasicNamedQuery;
-import org.powerbot.script.lang.Filter;
 import org.powerbot.script.wrappers.GameObject;
 
 /**

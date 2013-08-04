@@ -125,4 +125,5 @@ public class Backpack extends org.powerbot.script.methods.Backpack {
         return ctx.backpack.count() == 28;
     }
     
+    
 }
