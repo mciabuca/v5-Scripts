@@ -2,14 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.injustice.powerminer.util;
+package org.injustice.miner.util;
 
-import java.awt.EventQueue;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -18,48 +15,41 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JSlider;
-import javax.swing.SwingConstants;
-import org.injustice.powerminer.PowerMiner;
-import org.injustice.powerminer.data.MinerMaster;
-import org.injustice.powerminer.data.Rock;
-import org.injustice.powerminer.data.RockOption;
+import org.injustice.miner.PowerMiner;
+import org.injustice.miner.data.MinerMaster;
+import org.injustice.miner.data.Rock;
+import org.injustice.miner.data.RockOption;
 
 /**
  *
  * @author Injustice
  */
+
+@Deprecated
+/**
+ * Old version
+ * @deprecated use {@link org.injustice.miner.util#MinerGUI} instead.
+ */
 public class GUI extends PowerMiner {
 
-    public static final JFrame frame = new JFrame();
-    private final JLabel selectRock = new JLabel("Rock to mine:");
-    private final JComboBox rocks = new JComboBox(new DefaultComboBoxModel(Rock.values()));
-    private final JLabel whatToDo = new JLabel("What to do: ");
-    private final JRadioButton bank = new JRadioButton("Bank");
-    private final JRadioButton powermine = new JRadioButton("Drop");
-    private final JComboBox locations = new JComboBox(new DefaultComboBoxModel(MinerMaster.values()));
-    private final JLabel loc = new JLabel("Location: ");
-    private final JCheckBox hover = new JCheckBox("Hover next rock");
     private final String text = ("Just Mine by Injustice." + " Choose options above,"
             + " have selected ore in first slot," + " move to central tile and click start.");
-    private JLabel instruction1 = new JLabel(String.format("<html><div WIDTH=%d align='center'>%s</div><html>", 190, text));
-
-    public static void main(String[] args) {
-        new GUI();
-    }
+    public static final JFrame frame = new JFrame();
+    private final JLabel selectRock = new JLabel("Rock to mine:");
+    private final JLabel whatToDo = new JLabel("What to do: ");
+    private final JLabel loc = new JLabel("Location: ");
+    private final JLabel instruction = new JLabel(String.format("<html><div WIDTH=%d align='center'>%s</div><html>", 190, text));
+    private final JComboBox rocks = new JComboBox(new DefaultComboBoxModel(Rock.values()));
+    private final JComboBox locations = new JComboBox(new DefaultComboBoxModel(MinerMaster.values()));
+    private final JCheckBox hover = new JCheckBox("Hover next rock");
+    private final JRadioButton bank = new JRadioButton("Bank");
+    private final JRadioButton powermine = new JRadioButton("Drop");
+    private final JButton start = new JButton("Start!");
+    private final ButtonGroup group = new ButtonGroup();
+    private final JPanel panel = new JPanel();
 
     public GUI() {
         init();
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     private final void startActionPerformed(ActionEvent e) {
@@ -83,9 +73,9 @@ public class GUI extends PowerMiner {
         frame.setTitle("Miner GUI");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        final JPanel panel = new JPanel();
         panel.setVisible(true);
         locations.setEnabled(false);
+
         bank.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -98,8 +88,13 @@ public class GUI extends PowerMiner {
                 locations.setEnabled(!powermine.isSelected());
             }
         });
+        start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startActionPerformed(e);
+            }
+        });
 
-        ButtonGroup group = new ButtonGroup();
         group.add(bank);
         group.add(powermine);
         powermine.setSelected(true);
@@ -112,14 +107,7 @@ public class GUI extends PowerMiner {
         panel.add(loc);
         panel.add(locations);
         panel.add(hover);
-        panel.add(instruction1);
-        final JButton start = new JButton("Start!");
-        start.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                startActionPerformed(e);
-            }
-        });
+        panel.add(instruction);
         panel.add(start);
 
         frame.add(panel);

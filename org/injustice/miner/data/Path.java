@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.injustice.powerminer.data;
+package org.injustice.miner.data;
 
 import org.injustice.framework.api.IMethodContext;
 import org.powerbot.script.wrappers.Tile;

@@ -1,4 +1,4 @@
-package org.injustice.powerminer.data;
+package org.injustice.miner.data;
 
 public enum MinerMaster {
 

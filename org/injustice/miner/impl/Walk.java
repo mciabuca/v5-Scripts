@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.injustice.powerminer.impl;
+package org.injustice.miner.impl;
 
 import org.injustice.framework.api.IMethodContext;
 import org.injustice.framework.script.node.StateNode;
-import org.injustice.powerminer.data.Location;
-import org.injustice.powerminer.data.MinerMaster;
+import org.injustice.miner.data.Location;
+import org.injustice.miner.data.MinerMaster;
 import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.Tile;
 import org.powerbot.script.wrappers.TilePath;

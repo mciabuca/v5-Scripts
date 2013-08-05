@@ -1,9 +1,9 @@
-package org.injustice.powerminer.impl;
+package org.injustice.miner.impl;
 
 import org.injustice.framework.api.IMethodContext;
 import org.injustice.framework.script.node.StateNode;
-import org.injustice.powerminer.data.Rock;
-import org.injustice.powerminer.data.RockOption;
+import org.injustice.miner.data.Rock;
+import org.injustice.miner.data.RockOption;
 import org.powerbot.script.util.Delay;
 import org.powerbot.script.wrappers.GameObject;
 

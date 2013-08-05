@@ -18,6 +18,7 @@ import org.injustice.framework.api.IMethodContext;
 import org.injustice.framework.api.IMethodProvider;
 import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.Actor;
+import org.powerbot.script.wrappers.Area;
 import org.powerbot.script.wrappers.Tile;
 
 /**
@@ -109,5 +110,16 @@ public class Misc extends IMethodProvider {
         return String.format("%s%." + precision + "f%s", sign,
                 number / Math.pow(1000, exponent),
                 "kmbtpe".charAt(exponent - 1));
+    }
+    
+    public Area makeArea(final int radius, final Tile loc) {
+        final int x = loc.getX();
+        final int y = loc.getY();
+        final int p = loc.getPlane();
+        final Tile N = new Tile(x, y + radius + 1, p);
+        final Tile S = new Tile(x, y - radius - 1, p);
+        final Tile E = new Tile(x - radius, y, p);
+        final Tile W = new Tile(x + radius + 1, y, p);
+        return new Area(N, E, S, W);
     }
 }
