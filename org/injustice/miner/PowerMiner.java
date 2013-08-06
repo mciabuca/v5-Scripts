@@ -34,6 +34,7 @@ import org.powerbot.event.MessageListener;
 import org.powerbot.event.PaintListener;
 import org.powerbot.script.Manifest;
 import org.powerbot.script.methods.Environment;
+import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.methods.Skills;
 import org.powerbot.script.wrappers.Area;
 import org.powerbot.script.wrappers.GameObject;
@@ -64,6 +65,15 @@ public class PowerMiner extends ActiveScript implements PaintListener, MouseList
     public MinerMaster master;
     public String state;
 
+    public PowerMiner() {
+        this.ctx = new IMethodContext(super.ctx);
+    }
+    
+    @Override
+    public void setContext(MethodContext ctx) {
+        this.ctx.init(ctx);
+    }
+    
     @Override
     public void start() {
         l = new Logger(font3);
@@ -87,8 +97,10 @@ public class PowerMiner extends ActiveScript implements PaintListener, MouseList
         l.log("Rock selected: " + selectedRock);
         if (banking) {
             l.log("Banking enabled.");
-            nodes.add(Walk.createBankPathInstance(master, ctx));
-            nodes.add(Walk.createSitePathInstance(master, ctx));
+            nodes.add(new Walk(ctx, master.getPath().getPath()).
+                    createBankPathInstance(master, ctx));
+            nodes.add(new Walk(ctx, master.getPath().getPath()).
+                    createSitePathInstance(master, ctx));
             nodes.add(new Banking(ctx, selectedRock, master));
             l.log("Location selected: " + master.getLocation());
             l.log("Banking at: " + master.getBank());

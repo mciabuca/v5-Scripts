@@ -35,7 +35,7 @@ public class Backpack extends org.powerbot.script.methods.Backpack {
                 String[] acts = ctx.menu.getItems();
                 for (int a = 0; a < acts.length; a++) {
                     if (acts[a].contains("Drop")) {
- //                       ctx.mouse.hop(mouseX, ctx.menu..y + 20 + a * 20);
+//                        ctx.mouse.hop(mouseX, ctx.menu.getLocation().y + 20 + a * 20);
                         this.sleep(80, 100);
                         ctx.mouse.click(true);
                     }

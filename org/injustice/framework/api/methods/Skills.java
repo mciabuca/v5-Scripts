@@ -6,6 +6,7 @@ package org.injustice.framework.api.methods;
 
 import org.injustice.framework.api.IMethodContext;
 import org.injustice.framework.api.IMethodProvider;
+import org.powerbot.client.Skill;
 import org.powerbot.script.util.SkillData;
 import org.powerbot.script.util.Timer;
 
@@ -42,5 +43,9 @@ public class Skills extends org.powerbot.script.methods.Skills {
 
     public String getTimeToNextLevel(final int skill) {
         return Timer.format(s.timeToLevel(SkillData.Rate.HOUR, skill));
+    }
+    
+    public int getExpTNL(final int skill) {
+        return getExperienceAt(getLevel(skill) + 1) - getExperience(skill);
     }
 }

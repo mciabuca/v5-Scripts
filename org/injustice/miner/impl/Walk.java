@@ -33,12 +33,12 @@ public class Walk extends StateNode {
         nextStep.reset();
     }
 
-    public static Walk createBankPathInstance(MinerMaster factory, IMethodContext ctx) {
+    public Walk createBankPathInstance(MinerMaster factory, IMethodContext ctx) {
         state = "Walking bank";
         return new Walk(ctx, factory.getPath().getPath());
     }
 
-    public static Walk createSitePathInstance(MinerMaster factory, IMethodContext ctx) {
+    public Walk createSitePathInstance(MinerMaster factory, IMethodContext ctx) {
         Tile[] path = factory.getPath().getPath();
         path[path.length + 1] = Location.startTile;
         state = "Walking back";
